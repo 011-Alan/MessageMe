@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MessageMe Community Hub</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="page-halo"></div>
+
+  <section id="auth-view" class="auth-shell">
+    <div class="auth-shell__story">
+      <div class="story-card">
+        <span class="eyebrow">MessageMe</span>
+        <h1>Build your own always-on community space.</h1>
+        <p>
+          Login, launch servers, review join requests, create channels, and chat with files,
+          photos, video, audio, and documents in one clean Oracle-backed workspace.
+        </p>
+        <div class="feature-grid">
+          <article class="feature-chip">
+            <strong>Live server rail</strong>
+            <span>Your own communities, channels, and member controls.</span>
+          </article>
+          <article class="feature-chip">
+            <strong>Admin powers</strong>
+            <span>Approve access, promote admins, and remove members quickly.</span>
+          </article>
+          <article class="feature-chip">
+            <strong>Rich messages</strong>
+            <span>Send text, images, video, audio, and document uploads.</span>
+          </article>
+          <article class="feature-chip">
+            <strong>Session restore</strong>
+            <span>Users return to their personal dashboard with saved access.</span>
+          </article>
+        </div>
+      </div>
+      <div class="story-metrics">
+        <div class="metric-card">
+          <span>Community-first</span>
+          <strong>Discord-style layout</strong>
+        </div>
+        <div class="metric-card">
+          <span>Database</span>
+          <strong>Oracle-ready sessions</strong>
+        </div>
+        <div class="metric-card">
+          <span>Experience</span>
+          <strong>Modern glass UI</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="auth-shell__panel">
+      <div class="brand-badge">MM</div>
+      <div class="auth-card">
+        <div class="auth-card__header">
+          <span class="eyebrow">Access Portal</span>
+          <h2>Step into your community dashboard</h2>
+          <p>Register a new account or sign in to continue your conversations.</p>
+        </div>
+
+        <div class="auth-tabs">
+          <button type="button" class="tab-button" data-action="switch-auth" data-mode="login">
+            Login
+          </button>
+          <button type="button" class="tab-button" data-action="switch-auth" data-mode="register">
+            Register
+          </button>
+        </div>
+
+        <form id="login-form" class="auth-form">
+          <label class="field">
+            <span>Username or email</span>
+            <input type="text" name="username" placeholder="Your username" required>
+          </label>
+
+          <label class="field">
+            <span>Password</span>
+            <input type="password" name="password" placeholder="Your secure password" required>
+          </label>
+
+          <button class="primary-button" type="submit">Login to MessageMe</button>
+        </form>
+
+        <form id="register-form" class="auth-form" hidden>
+          <label class="field">
+            <span>Username</span>
+            <input type="text" name="username" placeholder="Choose a unique username" required>
+          </label>
+
+          <label class="field">
+            <span>Display name</span>
+            <input type="text" name="displayName" placeholder="How your community sees you" required>
+          </label>
+
+          <label class="field">
+            <span>Email</span>
+            <input type="email" name="email" placeholder="Your email address" required>
+          </label>
+
+          <label class="field">
+            <span>Password</span>
+            <input type="password" name="password" placeholder="8+ chars, uppercase, number, symbol" required>
+          </label>
+
+          <button class="primary-button" type="submit">Create account</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="app-view" class="app-shell" hidden>
+    <aside id="left-sidebar" class="left-sidebar">
+      <div id="profile-card" class="profile-card"></div>
+
+      <div class="sidebar-actions">
+        <button class="ghost-button" type="button" data-action="search-users">Search users</button>
+        <button class="ghost-button" type="button" data-action="search-servers">Search servers</button>
+      </div>
+
+      <div class="sidebar-scroll">
+        <section class="panel-block">
+          <div class="section-header">
+            <span>Servers</span>
+            <button
+              id="create-server-button"
+              class="mini-button mini-button--icon"
+              type="button"
+              data-action="create-server"
+              aria-label="Create server"
+              title="Create server"
+            >
+              +
+            </button>
+          </div>
+          <div id="server-list" class="server-list server-list--stack"></div>
+        </section>
+
+        <section class="panel-block">
+          <div class="section-header">
+            <span>Channels</span>
+            <button
+              id="create-channel-button"
+              class="mini-button mini-button--icon"
+              type="button"
+              data-action="create-channel"
+              aria-label="Create channel"
+              title="Create channel"
+            >
+              +
+            </button>
+          </div>
+          <div id="channel-list" class="channel-list"></div>
+        </section>
+
+      </div>
+    </aside>
+
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <main class="chat-stage">
+      <header class="chat-topbar">
+        <div class="chat-topbar__title">
+          <div id="chat-header" class="chat-header"></div>
+        </div>
+        <div class="chat-topbar__actions">
+          <div class="members-dropdown">
+            <button id="members-toggle-button" class="ghost-button" type="button" data-action="toggle-members">
+              Members
+            </button>
+            <div id="members-dropdown-panel" class="members-dropdown__panel" hidden></div>
+          </div>
+        </div>
+      </header>
+
+      <section id="message-list" class="message-list"></section>
+
+      <form id="composer-form" class="composer">
+        <div id="attachment-preview" class="attachment-preview"></div>
+        <div class="composer__row">
+          <textarea
+            id="composer-text"
+            name="messageText"
+            rows="1"
+            placeholder="Select a channel to start chatting"
+          ></textarea>
+          <label class="attach-button">
+            <input id="attachment-input" type="file" multiple hidden>
+            Attach
+          </label>
+          <button id="send-button" class="primary-button primary-button--compact" type="submit">
+            Send
+          </button>
+        </div>
+      </form>
+    </main>
+  </section>
+
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root"></div>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
