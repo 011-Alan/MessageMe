@@ -967,9 +967,3 @@ npm run install:oracle
 Yes. MessageMe is useful as a communication tool prototype and as a strong academic or resume project. It solves a practical problem, organized communication, while also demonstrating real engineering depth: authentication, database design, access control, PL/SQL packages, transactions, notifications, file handling, and moderation.
 
 The strongest part of the project is that DBMS concepts are not isolated examples. They directly support visible features such as joining servers, sending messages, tracking unread messages, creating notifications, and enforcing permissions.
-
-## Resume Points
-
-- Built MessageMe, a full-stack community messaging platform with servers, channels, direct messages, file attachments, notifications, email verification, password reset, invite links, and role-based moderation.
-- Designed and managed an Oracle Database schema using SQL, PL/SQL packages, triggers, views, constraints, indexes, transactions, audit logging, and migration scripts for real chat, membership, notification, and security workflows.
-- Developed a Node.js/Express REST backend and vanilla JavaScript single-page frontend with session authentication, Oracle connection pooling, attachment validation/storage, browser notifications, polling-based updates, and modular controllers/routes.
